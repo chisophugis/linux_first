@@ -4,4 +4,4 @@
 # module to be built. It's sort of magical/weird.
 # To add more objects into a particular module nominated by <foo>.o in
 # `obj-m`, you define a variable <foo>-y containing extra objects.
-obj-m := nothing.o hello.o
+obj-m := nothing.o hello.o memory.o

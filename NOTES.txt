@@ -15,6 +15,48 @@ hello.ko:
 sean:~/pg/linux_first % sudo insmod hello.ko
 sean:~/pg/linux_first % lsmod | grep hello
 hello                  16384  0 
+
+from dmesg:
 [30478.062502] <1> Hello world!
 [30482.566375] <1> Bye
-sean:~/pg/linux_first % sudo rmmod hello 
+
+sean:~/pg/linux_first % sudo rmmod hello
+
+
+
+memory.ko:
+
+sean:~/pg/linux_first % sudo insmod memory.ko
+sean:~/pg/linux_first % sudo mknod /dev/memory c 60 0
+sean:~/pg/linux_first % sudo chmod 666 /dev/memory
+
+from dmesg:
+[43755.260347] <1> Inserting memory module
+
+sean:~/pg/linux_first % cat /dev/memory | od -c
+0000000  \0
+0000001
+
+sean:~/pg/linux_first % echo -n 'a' >/dev/memory
+
+sean:~/pg/linux_first % cat /dev/memory | od -c
+0000000   a
+0000001
+
+sean:~/pg/linux_first % sudo rmmod memory
+
+from dmesg:
+[43755.260347] <1> Inserting memory module
+[44048.759164] <1> Removing memory module
+
+sean:~/pg/linux_first % cat /dev/memory
+cat: /dev/memory: No such device or address
+zsh: exit 1     cat /dev/memory
+
+sean:~/pg/linux_first % ls -l /dev/memory
+crw-rw-rw- 1 root 60, 0 Aug  9 00:45 /dev/memory
+
+Note: different error than "file not found"
+sean:~/pg/linux_first % cat /dev/memoryaaa
+cat: /dev/memoryaaa: No such file or directory
+zsh: exit 1     cat /dev/memoryaaa
