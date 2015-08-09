@@ -1,0 +1,20 @@
+nothing.ko:
+
+sean:~/pg/linux_first % sudo insmod nothing.ko
+sean:~/pg/linux_first % lsmod | grep nothing
+nothing                12288  0 
+sean:~/pg/linux_first % sudo rmmod nothing
+sean:~/pg/linux_first % lsmod | grep nothing
+zsh: done       lsmod | 
+zsh: exit 1     grep --directories=skip --color nothing
+
+
+
+hello.ko:
+
+sean:~/pg/linux_first % sudo insmod hello.ko
+sean:~/pg/linux_first % lsmod | grep hello
+hello                  16384  0 
+[30478.062502] <1> Hello world!
+[30482.566375] <1> Bye
+sean:~/pg/linux_first % sudo rmmod hello 
